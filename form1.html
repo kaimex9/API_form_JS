@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form name="form1" novalidate>
+        <span>Mayor 18 años</span> <input type="number" name="age" /> <input type="submit" name="b1"
+            value="comprobar" />
+        <span>Formato dd-mm-AAAA</span> <input type="text" name="date" /><input type="submit" name="b2"
+            value="comprobar" />
+    </form>
+    <script>
+        let form = document.forms["form1"];
+
+        form.addEventListener("submit", function () {
+            form["age"].setCustomValidity("error");
+        })
+    </script>
+</body>
+
+</html>
