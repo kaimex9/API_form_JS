@@ -14,12 +14,38 @@
         <span>Formato dd-mm-AAAA</span> <input type="text" name="date" /><input type="submit" name="b2"
             value="comprobar" />
     </form>
+    
     <script>
         let form = document.forms["form1"];
+        let ageInput = form["age"];
+        let dateInput = form["date"];
 
-        form.addEventListener("submit", function () {
-            form["age"].setCustomValidity("error");
-        })
+        form.addEventListener("submit", ageValidation); //Ejecuto la funcion cada vez que se pulsa un boton de submit
+        form.addEventListener("submit", dateValidation); 
+        ageInput.addEventListener("input", ageValidation); //Ejecuto la funcion cada vez que el usuario introduce una letra
+        dateInput.addEventListener("input", dateValidation);
+
+        function ageValidation(event) {
+            event.preventDefault(); // Evita que se recarge la pagina
+
+            if (ageInput.value < 18) {
+                ageInput.setCustomValidity("Debes ser mayor de 18");
+            } else {
+                ageInput.setCustomValidity(""); // Borrar el mensaje de error
+            }
+            ageInput.reportValidity(); // Muestra el mensaje de error si existe
+        }
+
+        function dateValidation(event) {
+            event.preventDefault();
+            let regex = /^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[0-2])-(\d{4})$/; //regex para formato de fecha correcta y existente
+            if (!regex.test(dateInput.value)) {
+                dateInput.setCustomValidity("Debes introducir una fecha valida");
+            } else {
+                dateInput.setCustomValidity("");
+            }
+            dateInput.reportValidity();
+        }
     </script>
 </body>
 

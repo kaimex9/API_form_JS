@@ -1,1 +1,0 @@
-let form = document.forms["form1"];
