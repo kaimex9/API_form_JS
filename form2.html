@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form2</title>
+</head>
+
+<body>
+    <form name="form2">
+        <span>Entre 3 i 5 lletres</span> <input type="text" name="string3-5" />
+        <span>Formato email valid</span> <input type="email" name="validEmail" />
+        <span>Checkbox</span>
+        <input type="checkbox" id="?" name="c1" value="checkbox1">
+        <input type="checkbox" id="?" name="c2" value="checkbox2">
+        <input type="checkbox" id="?" name="c3" value="checkbox3">
+
+        <select name="games" id="gameSelector" ?>
+            <option value="g1">Red Dead Redemption 2</option>
+            <option value="g2">World of Warcraft</option>
+            <option value="g3">The legend of Zelda</option>
+        </select>
+        <input type="submit" value="comprobar" />
+    </form>
+    <script>
+        let form = document.forms["form2"];
+        let text = form["string3-5"];
+        let email = form["validEmail"];
+
+        form.addEventListener("submit", textValidation);
+        text.addEventListener("input", textValidation);
+        email.addEventListener("input", emailValidation);
+
+        function textValidation(event) {
+            if (text.value === "" || text.value.length < 3 || text.value.length > 5) {
+                text.setCustomValidity("Este texto debe tener de 3 a 5 letras");
+                event.preventDefault();
+            } else {
+                text.setCustomValidity("");
+            }
+            text.reportValidity();
+        }
+
+        function emailValidation() {
+            
+        }
+    </script>
+</body>
+
+</html>
